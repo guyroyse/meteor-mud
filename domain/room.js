@@ -33,6 +33,24 @@ MeteorMud.Domain.Room.prototype = (function() {
 
 })();
 
+MeteorMud.Domain.Room.all = function() {
+  return MeteorMud.Data.Rooms.all().map(function(room) {
+    return new MeteorMud.Domain.Room(room._id);    
+  });
+};
+
+MeteorMud.Domain.Room.createRoom = function(name, description) {
+
+  var room = {};
+  room.name = name;
+  room.description = description;
+
+  var id = MeteorMud.Data.Rooms.insert(room);
+  
+  return new MeteorMud.Domain.Room(id);
+
+};
+
 MeteorMud.Domain.Room.lobby = function() {
 
   var createLobby = function() {

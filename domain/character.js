@@ -27,6 +27,10 @@ MeteorMud.Domain.Character.prototype = (function() {
      return new MeteorMud.Domain.Room(this.room);
   };
   
+  self.teleportTo = function(room) {
+    MeteorMud.Data.Characters.updateRoom(this.user, room.id);
+  };
+  
   self.useDoor = function(door) {    
   };
   

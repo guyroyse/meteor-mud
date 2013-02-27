@@ -29,13 +29,28 @@
       
       var self = Object.create(null);
       
+      var character = function() {
+        return MeteorMud.Domain.Character.currentCharacter();
+      };
+      
+      self.onGotoRoomClick = function(room) {
+        session.editMode(false);
+        character().teleportTo(room);
+      };
+      
       self.onEditRoomClick = function() {
         session.editMode(true);
       };
+      
+      self.onNewRoomClick = function() {
+        session.editMode(false);
+        var room = MeteorMud.Domain.Room.createRoom(character().name + "'s New Room",
+          "This rooms needs a better description.");
+        character().teleportTo(room);
+      };
 
       self.onEditRoomSave = function() {
-        var character = MeteorMud.Domain.Character.currentCharacter();
-        var room = character.currentRoom();
+        var room = character().currentRoom();
         room.setName(view.name());
         room.setDescription(view.description());
         session.editMode(false);
@@ -54,6 +69,10 @@
       return character.currentRoom();
     };
     
+    Template.roomsDropdown.rooms = function() {
+      return MeteorMud.Domain.Room.all();
+    };
+    
     Template.room.editMode = function() {
       return session.editMode();
     };
@@ -67,6 +86,12 @@
       },
       'click #edit-room-save' : function() {
         controller.onEditRoomSave();
+      },
+      'click #new-room' : function() {
+        controller.onNewRoomClick();
+      },
+      'click .goto-room' : function() {
+        controller.onGotoRoomClick(this);
       }
     });
   
