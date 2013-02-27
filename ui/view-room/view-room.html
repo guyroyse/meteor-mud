@@ -1,13 +1,35 @@
 <template name="room">
   <div class="row-fluid">
-    <div class="span8 well">
+    <div class="span6 well">
+
+      {{#if editMode}}
       
-      <h4>{{room.name}}</h4>
-      <p>{{room.description}}</p>
+        <label><strong>Name</strong></label>      
+        <input id="edit-room-name" class="input-xxlarge" type="text" value="{{room.name}}" />
+      
+        <label><strong>Description</strong></label>
+        <textarea id="edit-room-desc" class="input-xxlarge" rows="10">{{room.description}}</textarea>
+      
+        <div class="btn-group">
+          <button id="edit-room-save" class="btn">Save</button>
+          <button id="edit-room-cancel" class="btn">Cancel</button>
+        </div>
+      
+      {{else}}
+      
+        <h4>{{room.name}}</h4>      
+        <p>{{room.description}}</p>
+      
+      {{/if}}
       
       <h4>Doors</h4>
       {{> doors}}
       
+    </div>
+    <div class="span2 btn-group btn-group-vertical">
+      <button id="edit-room" class="btn btn-block">Edit Room</button>
+      <button id="new-room" class="btn btn-block">New Room</button>
+      <button id="new-door" class="btn btn-block">New Door</button>
     </div>
   </div>
 </template>
@@ -18,8 +40,4 @@
   {{else}}
     There are no exits from this room.
   {{/each}}
-</template>
-
-<template name="door">
-  <span class="door">{{name}}</span>
 </template>

@@ -15,6 +15,14 @@ MeteorMud.Data.Rooms = (function() {
     return this.collection.findOne({lobby: true});
   };
   
+  self.setName = function(id, name) {
+    this.setField(id, 'name', name);
+  };
+
+  self.setDescription = function(id, desc) {
+    this.setField(id, 'description', desc);
+  };
+
   return self;
 
 })();

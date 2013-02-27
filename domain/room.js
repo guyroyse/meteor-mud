@@ -17,6 +17,22 @@ MeteorMud.Domain.Room = function(id) {
   
 };
 
+MeteorMud.Domain.Room.prototype = (function() {
+
+  var self = Object.create(null);
+
+  self.setName = function(name) {
+    MeteorMud.Data.Rooms.setName(this.id, name);
+  };
+
+  self.setDescription = function(description) {
+    MeteorMud.Data.Rooms.setDescription(this.id, description);
+  };
+
+  return self;
+
+})();
+
 MeteorMud.Domain.Room.lobby = function() {
 
   var createLobby = function() {
