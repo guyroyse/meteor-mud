@@ -1,0 +1,25 @@
+<template name="room">
+  <div class="row-fluid">
+    <div class="span8 well">
+      
+      <h4>{{room.name}}</h4>
+      <p>{{room.description}}</p>
+      
+      <h4>Doors</h4>
+      {{> doors}}
+      
+    </div>
+  </div>
+</template>
+
+<template name="doors">
+  {{#each room.doors}}
+    {{> door}}
+  {{else}}
+    There are no exits from this room.
+  {{/each}}
+</template>
+
+<template name="door">
+  <span class="door">{{name}}</span>
+</template>

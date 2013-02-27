@@ -1,0 +1,24 @@
+<head>
+  <title>MeteorMud</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="container-fluid">
+    {{> header}}
+    {{> content}}
+</body>
+
+<template name="content">
+  {{#if currentUser}}
+    {{#if character}}
+      {{> room}}
+    {{else}}
+      {{> createCharacter}}
+    {{/if}}
+  {{else}}
+    <div class="row-fluid">
+      <p class="span12 alert">You must login to play</p>
+    </div>    
+  {{/if}}
+</template>
