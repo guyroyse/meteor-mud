@@ -5,20 +5,11 @@
 
 <body>
   <div class="container-fluid">
-    {{> header}}
-    {{> content}}
-</body>
-
-<template name="content">
-  {{#if currentUser}}
-    {{#if character}}
-      {{> room}}
-    {{else}}
-      {{> createCharacter}}
-    {{/if}}
-  {{else}}
     <div class="row-fluid">
-      <p class="span12 alert">You must login to play</p>
-    </div>    
-  {{/if}}
-</template>
+      {{> header}}
+    </div>
+    <div class="row-fluid">
+      {{> content}}
+    </div>
+  </div>
+</body>

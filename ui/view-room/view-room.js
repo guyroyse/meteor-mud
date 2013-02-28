@@ -77,7 +77,7 @@
       
     })();
   
-    Template.room.room = function() {
+    Template.playGame.room = function() {
       var character = MeteorMud.Domain.Character.currentCharacter();
       return character.currentRoom();
     };
@@ -95,11 +95,11 @@
       return MeteorMud.Domain.Room.all();
     };
 
-    Template.room.editMode = function() {
+    Template.playGame.editMode = function() {
       return session.editMode();
     };
   
-    Template.room.events({
+    Template.playGame.events({
       'click #edit-room' : function() {
         controller.onEditRoomClick();
       },
