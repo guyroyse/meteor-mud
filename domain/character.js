@@ -31,7 +31,8 @@ MeteorMud.Domain.Character.prototype = (function() {
     MeteorMud.Data.Characters.updateRoom(this.user, room.id);
   };
   
-  self.useDoor = function(door) {    
+  self.useDoor = function(door) {
+    MeteorMud.Data.Characters.updateRoom(this.user, door.to);
   };
   
   return self;

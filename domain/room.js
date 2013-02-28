@@ -11,6 +11,7 @@ MeteorMud.Domain.Room = function(id) {
     this.name = room.name;
     this.description = room.description;
     this.lobby = room.lobby;
+    this.doors = room.doors;
   } else {
     this.found = false;
   }
@@ -27,6 +28,10 @@ MeteorMud.Domain.Room.prototype = (function() {
 
   self.setDescription = function(description) {
     MeteorMud.Data.Rooms.setDescription(this.id, description);
+  };
+  
+  self.addDoorTo = function(room, name, description) {
+    MeteorMud.Data.Rooms.addDoor(this.id, room.id, name, description);
   };
 
   return self;

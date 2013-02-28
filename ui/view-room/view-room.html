@@ -33,21 +33,38 @@
       
       {{/if}}
       
-      <h4>Doors</h4>
-      {{> doors}}
-      
     </div>
-    
-    
   </div>
+  
+  <div class="row-fluid">
+    <div class="span3 well">
+      <div class="row-fluid">
+        <div class="span12">
+          {{> doors}}
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+          {{> doorsDropdown}}
+        </div>
+      </div>
+    </div>        
+  </div>
+  
 </template>
 
 <template name="doors">
+  <p>
   {{#each room.doors}}
     {{> door}}
   {{else}}
     There are no exits from this room.
   {{/each}}
+  </p>
+</template>
+  
+<template name="door">
+  <button class="btn btn-block use-door" title="{{description}}">{{name}}</button>
 </template>
   
 <template name="roomsDropdown">
@@ -65,4 +82,21 @@
   
 <template name="roomDropdown">
   <li><a tabindex="-1" class="goto-room" href="#">{{name}}</a></li>  
+</template>
+
+<template name="doorsDropdown">
+  <div class="btn-group btn-block">
+    <button class="btn btn-block dropdown-toggle" data-toggle="dropdown" href="#">
+      Add Door to Room <span class="caret"/>
+    </button>
+    <ul class="dropdown-menu">
+      {{#each rooms}}
+        {{> doorDropdown}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="doorDropdown">
+  <li><a tabindex="-1" class="add-door-to-room" href="#">{{name}}</a></li>
 </template>

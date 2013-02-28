@@ -23,6 +23,15 @@ MeteorMud.Data.Rooms = (function() {
     this.setField(id, 'description', desc);
   };
 
+  self.addDoor = function(id, roomId, name, desc) {
+    var door = {
+      to: roomId, 
+      name: name, 
+      description: desc
+    };
+    this.collection.update({_id: id}, {$push: {doors: door}});
+  };
+
   return self;
 
 })();
