@@ -1,18 +1,23 @@
 <template name="adminButtons">
 
-  <div class="span12 well">
+  <div class="row-fluid">
+    <h4 class="span12">Admin Controls</h4>
+  </div>
+  <p class="row-fluid">
+    <button id="edit-room" class="btn span6">Edit Room</button>
+    <button id="new-room" class="btn span6">New Room</button>
+  </p>
+  <div class="row-fluid">
     {{> roomsDropdown}}
-    <button id="edit-room" class="btn">Edit Room</button>
-    <button id="new-room" class="btn">New Room</button>
     {{> doorsDropdown}}
   </div>
 
 </template>
 
 <template name="roomsDropdown">
-  <div class="btn-group">
-    <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      Go To Room <span class="caret"/>
+  <div class="span6 btn-group">
+    <button class="btn  btn-block dropdown-toggle" data-toggle="dropdown" href="#">
+      Teleport To <span class="caret"/>
     </button>
     <ul class="dropdown-menu">
       {{#each rooms}}
@@ -27,8 +32,8 @@
 </template>
 
 <template name="doorsDropdown">
-  <div class="btn-group">
-    <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+  <div class="span6 btn-group">
+    <button class="btn btn-block dropdown-toggle" data-toggle="dropdown" href="#">
       Add Door to Room <span class="caret"/>
     </button>
     <ul class="dropdown-menu">

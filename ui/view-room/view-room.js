@@ -1,5 +1,5 @@
 (function() {
-  
+
   if (Meteor.isClient) {
 
     var session = (function() {
@@ -26,21 +26,21 @@
     })();
 
     var controller = (function() {
-      
+
       var self = Object.create(null);
-      
+
       var character = function() {
         return MeteorMud.Domain.Character.currentCharacter();
       };
-      
+
       var room = function() {
-        return character().currentRoom();        
+        return character().currentRoom();
       };
-      
+
       self.onUseDoorClick = function(door) {
         character().useDoor(door);
       };
-      
+
       self.onEditRoomSave = function() {
         var room = character().currentRoom();
         room.setName(view.name());
@@ -53,12 +53,16 @@
       };
 
       return self;
-      
+
     })();
-  
-    Template.playGame.room = function() {
+
+    Template.room.room = function() {
       var character = MeteorMud.Domain.Character.currentCharacter();
       return character.currentRoom();
+    };
+
+    Template.room.editMode = function() {
+      return session.editMode();
     };
 
     Template.doors.room = function() {
@@ -66,22 +70,21 @@
       return character.currentRoom();
     };
 
-    Template.playGame.editMode = function() {
-      return session.editMode();
-    };
-  
-    Template.playGame.events({
+    Template.room.events({
       'click #edit-room-cancel' : function() {
-        controller.onEditRoomCancel();  
+        controller.onEditRoomCancel();
       },
       'click #edit-room-save' : function() {
         controller.onEditRoomSave();
-      },
-      'click .use-door' : function() {
-        controller.onUseDoorClick(this);
       }
     });
-  
+    
+    Template.door.events({
+      'click .use-door' : function() {
+        controller.onUseDoorClick(this);
+      }      
+    });
+
   }
 
 })();

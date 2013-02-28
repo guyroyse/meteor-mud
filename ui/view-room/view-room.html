@@ -1,55 +1,67 @@
-<template name="playGame">
-  
-  {{> adminButtons}}
+<template name="viewRoom">
+  {{> room}}
+  {{> doors}}
+</template>
 
-  <div class="row-fluid">
-    <div class="span6 well">
+<template name="room">
 
-      {{#if editMode}}
-      
-        <label><strong>Name</strong></label>      
+  {{#if editMode}}
+
+    <div class="row-fluid">
+      <div class="span12">
+        <label><strong>Name</strong></label>
         <input id="edit-room-name" class="input-xxlarge" type="text" value="{{room.name}}" />
-      
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12">
         <label><strong>Description</strong></label>
         <textarea id="edit-room-desc" class="input-xxlarge" rows="10">{{room.description}}</textarea>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12 btn-group">
+        <button id="edit-room-save" class="btn">Save</button>
+        <button id="edit-room-cancel" class="btn">Cancel</button>
+      </div>
+    </div>
+
+  {{else}}
+
+    <div class="span12">
+      <h4>{{room.name}}</h4>
+      <p>{{room.description}}</p>
       
-        <div class="btn-group">
-          <button id="edit-room-save" class="btn">Save</button>
-          <button id="edit-room-cancel" class="btn">Cancel</button>
+    </div>
+
+  {{/if}}
+
+</template>  
+  
+<template name="doors">
+
+  <p class="row-fluid"></p>
+
+  <div class="row-fluid">
+    <div class="span12">
+      
+      {{#if room.doors}}
+        <div>
+          {{#each room.doors}}
+            {{> door}}
+          {{/each}}
         </div>
-      
       {{else}}
-      
-        <h4>{{room.name}}</h4>      
-        <p>{{room.description}}</p>
-      
+        <p>There are no exits from this room.</p>
       {{/if}}
-      
+
     </div>
   </div>
   
-  <div class="row-fluid">
-    <div class="span3 well">
-      <div class="row-fluid">
-        <div class="span12">
-          {{> doors}}
-        </div>
-      </div>
-    </div>        
-  </div>
-  
 </template>
 
-<template name="doors">
-  <p>
-  {{#each room.doors}}
-    {{> door}}
-  {{else}}
-    There are no exits from this room.
-  {{/each}}
-  </p>
-</template>
-  
 <template name="door">
-  <button class="btn btn-block use-door" title="{{description}}">{{name}}</button>
+  <button class="btn btn-small btn-block use-door" title="{{description}}">{{name}}</button>
 </template>
