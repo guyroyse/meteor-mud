@@ -37,31 +37,10 @@
         return character().currentRoom();        
       };
       
-      self.onGotoRoomClick = function(room) {
-        session.editMode(false);
-        character().teleportTo(room);
-      };
-      
       self.onUseDoorClick = function(door) {
         character().useDoor(door);
       };
       
-      self.onAddDoorClick = function(toRoom) {
-        console.log(toRoom);
-        room().addDoorTo(toRoom, 'Door to ' + toRoom.name, 'This door is uninteresting');        
-      };
-      
-      self.onEditRoomClick = function() {
-        session.editMode(true);
-      };
-      
-      self.onNewRoomClick = function() {
-        session.editMode(false);
-        var room = MeteorMud.Domain.Room.createRoom(character().name + "'s New Room",
-          "This rooms needs a better description.");
-        character().teleportTo(room);
-      };
-
       self.onEditRoomSave = function() {
         var room = character().currentRoom();
         room.setName(view.name());
@@ -87,36 +66,16 @@
       return character.currentRoom();
     };
 
-    Template.roomsDropdown.rooms = function() {
-      return MeteorMud.Domain.Room.all();
-    };
-
-    Template.doorsDropdown.rooms = function() {
-      return MeteorMud.Domain.Room.all();
-    };
-
     Template.playGame.editMode = function() {
       return session.editMode();
     };
   
     Template.playGame.events({
-      'click #edit-room' : function() {
-        controller.onEditRoomClick();
-      },
       'click #edit-room-cancel' : function() {
         controller.onEditRoomCancel();  
       },
       'click #edit-room-save' : function() {
         controller.onEditRoomSave();
-      },
-      'click #new-room' : function() {
-        controller.onNewRoomClick();
-      },
-      'click .goto-room' : function() {
-        controller.onGotoRoomClick(this);
-      },
-      'click .add-door-to-room' : function() {
-        controller.onAddDoorClick(this);
       },
       'click .use-door' : function() {
         controller.onUseDoorClick(this);

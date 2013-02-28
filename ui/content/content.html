@@ -1,13 +1,13 @@
 <template name="content">
-  {{#if currentUser}}
-    {{#if character}}
-      {{> playGame}}
+  <div class="row-fluid">
+    {{#if currentUser}}
+      {{#if character}}
+        {{> playGame}}
+      {{else}}
+        {{> createCharacter}}
+      {{/if}}
     {{else}}
-      {{> createCharacter}}
-    {{/if}}
-  {{else}}
-    <div class="row-fluid">
       <p class="span12 alert">You must login to play</p>
-    </div>
-  {{/if}}
+    {{/if}}
+  </div>
 </template>

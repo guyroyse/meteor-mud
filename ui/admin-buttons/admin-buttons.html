@@ -1,0 +1,44 @@
+<template name="adminButtons">
+
+  <div class="span12 well">
+    {{> roomsDropdown}}
+    <button id="edit-room" class="btn">Edit Room</button>
+    <button id="new-room" class="btn">New Room</button>
+    {{> doorsDropdown}}
+  </div>
+
+</template>
+
+<template name="roomsDropdown">
+  <div class="btn-group">
+    <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Go To Room <span class="caret"/>
+    </button>
+    <ul class="dropdown-menu">
+      {{#each rooms}}
+      {{> roomDropdown}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="roomDropdown">
+  <li><a tabindex="-1" class="goto-room" href="#">{{name}}</a></li>
+</template>
+
+<template name="doorsDropdown">
+  <div class="btn-group">
+    <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Add Door to Room <span class="caret"/>
+    </button>
+    <ul class="dropdown-menu">
+      {{#each rooms}}
+      {{> doorDropdown}}
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="doorDropdown">
+  <li><a tabindex="-1" class="add-door-to-room" href="#">{{name}}</a></li>
+</template>
